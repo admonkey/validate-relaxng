@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Data xmlns="http://www.digitalmeasures.com/schema/data" xmlns:dmd="http://www.digitalmeasures.com/schema/data-metadata" dmd:date="2016-06-13">
+	<Record userId="123456" username="jeffp" termId="129" dmd:surveyId="1234567">
+		<dmd:IndexEntry indexKey="AACSBSUFF" entryKey="Participating" text="Participating"/>
+		<dmd:IndexEntry indexKey="DEPARTMENT" entryKey="WCBD" text="WCBD"/>
+		<dmd:IndexEntry indexKey="QUALIFICATION" entryKey="Instructional Practitioner" text="Instructional Practitioner"/>
+		<dmd:IndexEntry indexKey="RANK" entryKey="Academic Staff" text="Academic Staff"/>
+		<GENSERVE id="asdf" dmd:lastModified="2011-03-15T10:23:01" dmd:startDate="2010-07-01">
+			<TYPE>University</TYPE>
+			<TYPEOTHER/>
+			<ORG>University Academic Advising Council	</ORG>
+			<ROLE>Committee Member</ROLE>
+			<ROLEOTHER/>
+			<OFFICE>President/Elect/Past</OFFICE>
+			<RESPONSIBILITIES/>
+			<NUMHOURS/>
+			<ELECAPP>Elected</ELECAPP>
+			<AUDIENCE>Local</AUDIENCE>
+			<EXOFFICIO/>
+			<DTM_START>July</DTM_START>
+			<DTD_START/>
+			<DTY_START>2010</DTY_START>
+			<START_START>2010-07-01</START_START>
+			<START_END>2010-07-31</START_END>
+			<DTM_END/>
+			<DTD_END/>
+			<DTY_END/>
+			<END_START></END_START>
+			<END_END></END_END>
+		</GENSERVE>
+	</Record>
+</Data>

@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<r:grammar xmlns:r="http://relaxng.org/ns/structure/1.0" xmlns:dms="http://www.digitalmeasures.com/schema/schema-metadata" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+	<r:start>
+		<r:choice>
+			<r:element name="Data">
+				<r:ref name="Data"/>
+			</r:element>
+			<r:element name="Data" ns="http://www.digitalmeasures.com/schema/data">
+				<r:ref name="Data"/>
+			</r:element>
+		</r:choice>
+	</r:start>
+	<r:define name="Data">
+		<r:ref name="otherAttributes"/>
+		<r:ref name="otherElements"/>
+		<r:zeroOrMore>
+			<r:ref name="Record-INDIVIDUAL-ACTIVITIES-Business"/>
+		</r:zeroOrMore>
+	</r:define>
+	<r:define name="otherAttributes">
+		<r:zeroOrMore>
+			<r:attribute>
+				<r:anyName>
+					<r:except>
+						<r:nsName/>
+					</r:except>
+				</r:anyName>
+			</r:attribute>
+		</r:zeroOrMore>
+	</r:define>
+	<r:define name="otherElements">
+		<r:zeroOrMore>
+			<r:element>
+				<r:anyName>
+					<r:except>
+						<r:nsName/>
+					</r:except>
+				</r:anyName>
+				<r:zeroOrMore>
+					<r:choice>
+						<r:attribute>
+							<r:anyName/>
+						</r:attribute>
+						<r:text/>
+						<r:ref name="anyElements"/>
+					</r:choice>
+				</r:zeroOrMore>
+			</r:element>
+		</r:zeroOrMore>
+	</r:define>
+	<r:define name="anyElements">
+		<r:element>
+			<r:anyName/>
+			<r:zeroOrMore>
+				<r:choice>
+					<r:attribute>
+						<r:anyName/>
+					</r:attribute>
+					<r:text/>
+					<r:ref name="anyElements"/>
+				</r:choice>
+			</r:zeroOrMore>
+		</r:element>
+	</r:define>
+	<r:define name="Record-INDIVIDUAL-ACTIVITIES-Business">
+		<r:element name="Record">
+			<r:oneOrMore>
+				<r:choice>
+					<r:attribute name="userId">
+						<r:data type="integer"/>
+					</r:attribute>
+					<r:attribute name="username">
+						<r:data type="string"/>
+					</r:attribute>
+					<r:attribute name="UniversityID">
+						<r:data type="string"/>
+					</r:attribute>
+				</r:choice>
+			</r:oneOrMore>
+			<r:ref name="otherAttributes"/>
+			<r:interleave>
+				<r:ref name="otherElements"/>
+				<r:zeroOrMore>
+					<r:element name="GENSERVE" dms:text="General Service">
+						<r:optional>
+							<r:attribute name="id">
+								<r:data type="integer"/>
+							</r:attribute>
+						</r:optional>
+						<r:ref name="Access"/>
+						<r:ref name="otherAttributes"/>
+						<r:interleave>
+							<r:optional>
+								<r:element name="TYPE" dms:text="Service Type">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="Option-ServiceType"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="TYPEOTHER" dms:text="Explanation of &quot;Other&quot;">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="string-maxLength-20000"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="ORG" dms:text="Organization/Committee/Club">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="string-maxLength-20000"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="ROLE" dms:text="Position/Role">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="Option-ServicePosition"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="ROLEOTHER" dms:text="Explanation of &quot;Other&quot;">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="string-maxLength-20000"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="OFFICE" dms:text="Title/Office Held">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="Option-OfficeType"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="RESPONSIBILITIES" dms:text="Describe the significance of the position and your responsibilities">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="string-maxLength-20000"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="NUMHOURS" dms:text="Approx. Number of Hours Spent Per Year">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="double"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="ELECAPP" dms:text="Elected/Appointed?">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="Option-AppointedElected"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="AUDIENCE" dms:text="Audience">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="Option-ServiceAudience"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="EXOFFICIO" dms:text="Served Ex-Officio?">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="Option-YesNo"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="DTM_START" dms:text="Start Month">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="Option-Month"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="DTD_START" dms:text="Start Day">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="integer-minInclusive-1-maxInclusive-31"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="DTY_START" dms:text="Start Year">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="integer-minInclusive-1900-maxInclusive-2100"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="START_START" dms:text="Start Start">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="date"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="START_END" dms:text="Start End">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="date"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="DTM_END" dms:text="End Month">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="Option-Month"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="DTD_END" dms:text="End Day">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="integer-minInclusive-1-maxInclusive-31"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="DTY_END" dms:text="End Year">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="integer-minInclusive-1900-maxInclusive-2100"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="END_START" dms:text="End Start">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="date"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="END_END" dms:text="End End">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:ref name="date"/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+							<r:optional>
+								<r:element name="UPLOAD_FILE" dms:text="Supporting Documents">
+									<r:ref name="Access"/>
+									<r:ref name="otherAttributes"/>
+									<r:optional>
+										<r:attribute name="newFile">
+											<r:data type="string"/>
+										</r:attribute>
+									</r:optional>
+									<r:optional>
+										<r:text/>
+									</r:optional>
+								</r:element>
+							</r:optional>
+						</r:interleave>
+					</r:element>
+				</r:zeroOrMore>
+			</r:interleave>
+		</r:element>
+	</r:define>
+	<r:define name="Access">
+		<r:optional>
+			<r:attribute name="access">
+				<r:choice>
+					<r:value>READ_ONLY</r:value>
+					<r:value>HIDDEN</r:value>
+					<r:value>LOCKED</r:value>
+				</r:choice>
+			</r:attribute>
+		</r:optional>
+	</r:define>
+	<r:define name="Option-ServiceType">
+		<r:choice>
+			<r:value>College</r:value>
+			<r:value>Department</r:value>
+			<r:value>Professional</r:value>
+			<r:value>Public/Community</r:value>
+			<r:value>Student Organization</r:value>
+			<r:value>University</r:value>
+			<r:value>Other</r:value>
+		</r:choice>
+	</r:define>
+	<r:define name="string-maxLength-20000">
+		<r:data type="string">
+			<r:param name="maxLength">20000</r:param>
+		</r:data>
+	</r:define>
+	<r:define name="Option-ServicePosition">
+		<r:choice>
+			<r:value>Activity to Bridge Campus and Community</r:value>
+			<r:value>Administrative Assignment, Assistant Dean</r:value>
+			<r:value>Administrative Assignment, Associate Dean</r:value>
+			<r:value>Administrative Assignment, Dean</r:value>
+			<r:value>Administrative Assignment, Other</r:value>
+			<r:value>Attendee, Award Ceremony</r:value>
+			<r:value>Attendee, Convocation</r:value>
+			<r:value>Attendee, Graduation</r:value>
+			<r:value>Attendee, Meeting</r:value>
+			<r:value>Attendee, Orientation</r:value>
+			<r:value>Co-Chair</r:value>
+			<r:value>Committee Chair</r:value>
+			<r:value>Committee Member</r:value>
+			<r:value>Conference Chairperson</r:value>
+			<r:value>Conference Discussant</r:value>
+			<r:value>Conference Panel</r:value>
+			<r:value>Conference Program Organizer</r:value>
+			<r:value>Conference Reviewer</r:value>
+			<r:value>Conference Session Chair</r:value>
+			<r:value>Conference Track Organizer</r:value>
+			<r:value>Department Chairperson</r:value>
+			<r:value>Endowed Chair Review Committee</r:value>
+			<r:value>External Grant Proposal Reviewer</r:value>
+			<r:value>Guest Speaker</r:value>
+			<r:value>Interaction with Industry</r:value>
+			<r:value>Internal Grant Proposal Reviewer</r:value>
+			<r:value>Member of Professional Organization</r:value>
+			<r:value>Prepare/Grade Certification Exams</r:value>
+			<r:value>Pro Bono Professional Service</r:value>
+			<r:value>Student Org Advisor (Non-Professional Org)</r:value>
+			<r:value>Student Org Advisor (Professional Org)</r:value>
+			<r:value>Student Placement</r:value>
+			<r:value>Student Recruiter</r:value>
+			<r:value>Tenure Reviewer for Another Institution</r:value>
+			<r:value>Track Co-Chair</r:value>
+			<r:value>University Senate Service</r:value>
+			<r:value>Workshop Organizer</r:value>
+			<r:value>Other</r:value>
+		</r:choice>
+	</r:define>
+	<r:define name="Option-OfficeType">
+		<r:choice>
+			<r:value>Member</r:value>
+			<r:value>President/Elect/Past</r:value>
+			<r:value>Other Officer</r:value>
+			<r:value>Other</r:value>
+		</r:choice>
+	</r:define>
+	<r:define name="double">
+		<r:data type="double"/>
+	</r:define>
+	<r:define name="Option-AppointedElected">
+		<r:choice>
+			<r:value>Appointed</r:value>
+			<r:value>Elected</r:value>
+		</r:choice>
+	</r:define>
+	<r:define name="Option-ServiceAudience">
+		<r:choice>
+			<r:value>International</r:value>
+			<r:value>National</r:value>
+			<r:value>Regional</r:value>
+			<r:value>State</r:value>
+			<r:value>Local</r:value>
+		</r:choice>
+	</r:define>
+	<r:define name="Option-YesNo">
+		<r:choice>
+			<r:value>Yes</r:value>
+			<r:value>No</r:value>
+		</r:choice>
+	</r:define>
+	<r:define name="Option-Month">
+		<r:choice>
+			<r:value>January</r:value>
+			<r:value>February</r:value>
+			<r:value>March</r:value>
+			<r:value>April</r:value>
+			<r:value>May</r:value>
+			<r:value>June</r:value>
+			<r:value>July</r:value>
+			<r:value>August</r:value>
+			<r:value>September</r:value>
+			<r:value>October</r:value>
+			<r:value>November</r:value>
+			<r:value>December</r:value>
+		</r:choice>
+	</r:define>
+	<r:define name="integer-minInclusive-1-maxInclusive-31">
+		<r:data type="integer">
+			<r:param name="minInclusive">1</r:param>
+			<r:param name="maxInclusive">31</r:param>
+		</r:data>
+	</r:define>
+	<r:define name="integer-minInclusive-1900-maxInclusive-2100">
+		<r:data type="integer">
+			<r:param name="minInclusive">1900</r:param>
+			<r:param name="maxInclusive">2100</r:param>
+		</r:data>
+	</r:define>
+	<r:define name="date">
+		<r:data type="date"/>
+	</r:define>
+</r:grammar>
