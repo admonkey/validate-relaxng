@@ -1,6 +1,6 @@
 > These files are to support [a question on StackOverflow][7]
 
-Why is [this XML][1] still validating when [changing the integer][2] from `id="123456"` to `id="asdf"` ?
+Why is [this XML][1] still validating when [changing the integer][2] from `id="33426841601"` to `id="asdf"` ?
 
 I'm totally new to RELAXNG, but I expect [this part of the vendor-provided schema][3] to invalidate it:
 
